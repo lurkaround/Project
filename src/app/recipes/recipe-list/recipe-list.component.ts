@@ -8,7 +8,16 @@ import { Recipe } from '../recipe.model'
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [
-    new Recipe('A Test Recipe', 'This is a test description', 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fminimalistbaker.com%2Fwp-content%2Fuploads%2F2015%2F08%2FAMAZING-HEALTHY-Vegan-Fried-Rice-with-Crispy-Tofu-vegan-glutenfree-recipe-chinese-friedrice-minimalistbaker-plantbased.jpg&f=1&nofb=1')
+    new Recipe(
+      "A Test Recipe",
+      "Test description",
+      "http://technicallyteamann.com/wp-content/uploads/2017/03/Recipe_logo-1.jpeg"
+    ),
+    new Recipe(
+      "A Test Recipe",
+      "Test description",
+      "http://technicallyteamann.com/wp-content/uploads/2017/03/Recipe_logo-1.jpeg"
+    )
   ];
 
   constructor() {}
