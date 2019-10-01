@@ -1,23 +1,36 @@
-import { Recipe } from './recipe.model'
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
+import { Recipe } from "./recipe.model";
+import { Ingredient } from "../shared/ingredient.model";
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
+@Injectable()
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>();
+         recipeSelected = new EventEmitter<Recipe>();
 
-private recipes: Recipe[] = [
-    new Recipe(
-        "A Test Recipe",
-        "Test description",
-        "http://technicallyteamann.com/wp-content/uploads/2017/03/Recipe_logo-1.jpeg"
-    ),
-    new Recipe(
-        "Another Test Recipe",
-        "Test description",
-        "http://technicallyteamann.com/wp-content/uploads/2017/03/Recipe_logo-1.jpeg"
-    )
-    ];
+         private recipes: Recipe[] = [
+           new Recipe(
+             "Firecracker Vegan Lettuce",
+             "Hello YUM",
+             "https://pinchofyum.com/wp-content/uploads/Tofu-Lettuce-Wraps-Recipe.jpg",
+             [new Ingredient("Lettuce", 2), new Ingredient("Tofu", 3)]
+           ),
+           new Recipe(
+             "Vegan Bowl",
+             "Stuff in a bowl!",
+             "https://detoxinista.com/wp-content/uploads/2017/03/instant-pot-vegan-burrito-bowls.jpg",
+             [new Ingredient('Bowl', 1), 
+             new Ingredient('Avocado', 3)]
+           )
+         ];
 
-    getRecipes() {
-        return this.recipes.slice();
-    }
-}
+         constructor(private slService: ShoppingListService) {}
+
+         getRecipes() {
+           return this.recipes.slice();
+         }
+
+         addIngredientsToShoppingList(ingredients: Ingredient[]) {
+            this.slService.addIngredients(ingredients);
+         }
+       }
